@@ -18,7 +18,7 @@ namespace DatabaseFirstLINQ
             ProblemOne();
             //ProblemTwo();
             ProblemThree();
-            //ProblemFour();
+            ProblemFour();
             //ProblemFive();
             //ProblemSix();
             //ProblemSeven();
@@ -44,7 +44,7 @@ namespace DatabaseFirstLINQ
             // HINT: .ToList().Count
             var userCount = _context.Users.ToList().Count;
 
-            Console.WriteLine($"There are currently {userCount} users.");
+            Console.WriteLine($"#1 *** There are currently {userCount} users.");
 
         }
 
@@ -66,9 +66,10 @@ namespace DatabaseFirstLINQ
             // Then print the name and price of each product from the above query to the console.
             var productPrice = _context.Products.Where(p => p.Price > 150).Select(p => p.Name).ToList();
 
+            Console.WriteLine("#3 ***These products cost more than $150: ");
             foreach(var product in productPrice)
             {
-                Console.WriteLine($"The following products cost more than $150: {product}");
+                Console.WriteLine(product);
             }
         }
 
@@ -76,7 +77,14 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets each product that contains an "s" in the products name.
             // Then print the name of each product from the above query to the console.
+            char searchCharacter = 's';
+            var products = _context.Products.ToList().Where(p => p.Name.Contains(searchCharacter)).Select(p => p.Name);
 
+            Console.WriteLine("#4 ***These products have an s in their name: ");
+            foreach(var p in products)
+            {
+                Console.WriteLine(p);
+            }
         }
 
         private void ProblemFive()

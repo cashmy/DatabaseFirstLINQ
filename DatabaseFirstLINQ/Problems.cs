@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DatabaseFirstLINQ.Models;
+using System.Collections.Generic;
 
 namespace DatabaseFirstLINQ
 {
@@ -16,7 +17,7 @@ namespace DatabaseFirstLINQ
         public void RunLINQQueries()
         {
             ProblemOne();
-            //ProblemTwo();
+            ProblemTwo();
             ProblemThree();
             ProblemFour();
             //ProblemFive();
@@ -35,7 +36,6 @@ namespace DatabaseFirstLINQ
             //ProblemEighteen();
             //ProblemNineteen();
             //ProblemTwenty();
-            BonusOne();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -44,9 +44,8 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that returns the number of users in the Users table.
             // HINT: .ToList().Count
             var userCount = _context.Users.ToList().Count;
-
-            Console.WriteLine($"#1 *** There are currently {userCount} users.");
-
+            Console.WriteLine("\n\n********** Problem 1 **********");
+            Console.WriteLine($" There are currently {userCount} users.");
         }
 
         private void ProblemTwo()
@@ -54,6 +53,7 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
             var users = _context.Users;
 
+            Console.WriteLine("\n\n********** Problem 2 **********");
             foreach (User user in users)
             {
                 Console.WriteLine(user.Email);
@@ -65,12 +65,12 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets each product where the products price is greater than $150.
             // Then print the name and price of each product from the above query to the console.
-            var productPrice = _context.Products.Where(p => p.Price > 150).Select(p => p.Name).ToList();
+            var products = _context.Products.Where(p => p.Price > 150).ToList();
 
-            Console.WriteLine("#3 ***These products cost more than $150: ");
-            foreach(var product in productPrice)
+            Console.WriteLine("\n\n********** Problem 3 **********");
+            foreach (var product in products)
             {
-                Console.WriteLine(product);
+                Console.WriteLine($"Product {product.Name} has a price of ${product.Price}");
             }
         }
 
@@ -78,10 +78,9 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets each product that contains an "s" in the products name.
             // Then print the name of each product from the above query to the console.
-            char searchCharacter = 's';
-            var products = _context.Products.ToList().Where(p => p.Name.Contains(searchCharacter)).Select(p => p.Name);
+            var products = _context.Products.Where(p => p.Name.Contains(s)).Select(p => p.Name);
+            Console.WriteLine("\n\n********** Problem 4 **********");
 
-            Console.WriteLine("#4 ***These products have an s in their name: ");
             foreach(var p in products)
             {
                 Console.WriteLine(p);
@@ -234,12 +233,8 @@ namespace DatabaseFirstLINQ
 
         private void ProblemTwenty()
         {
-            //// Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-            //var user = _context.Users.Where(u => u.Email == "oda@gmail.com").Select(u => u.Email).ToList();
-            //foreach (var u in user)
-            //{
-            //    Console.WriteLine(u);
-            //}
+            // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
+
         }
 
         // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
@@ -249,21 +244,6 @@ namespace DatabaseFirstLINQ
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
-
-
-            Console.WriteLine("Provide email: ");
-            string email = Console.ReadLine();
-            Console.WriteLine("Provide password.");
-            string password = Console.ReadLine();
-            var userCred = _context.Users.Where(e => e.Email == email && e.Password == password).ToList();
-            foreach (var user in userCred)
-            {
-                Console.Write("Signed In!");
-            }
-            if (userCred.Count == 0)
-            {
-                Console.WriteLine("Try Again :-)");
-            }
         }
 
         private void BonusTwo()

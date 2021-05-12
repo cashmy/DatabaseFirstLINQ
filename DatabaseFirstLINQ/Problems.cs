@@ -27,7 +27,7 @@ namespace DatabaseFirstLINQ
             ProblemNine();
             ProblemTen();
             //ProblemEleven();
-            //ProblemTwelve();
+            ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
@@ -186,6 +186,7 @@ namespace DatabaseFirstLINQ
         private void ProblemEleven()
         {
             // Create a new User object and add that user to the Users table using LINQ.
+            Console.WriteLine("\n\n********** Problem 11 **********");
             User newUser = new User()
             {
                 Email = "david@gmail.com",
@@ -193,12 +194,24 @@ namespace DatabaseFirstLINQ
             };
             _context.Users.Add(newUser);
             _context.SaveChanges();
+
+            Console.WriteLine($"New user added {newUser.Email}");
         }
 
         private void ProblemTwelve()
         {
             // Create a new Product object and add that product to the Products table using LINQ.
+            Console.WriteLine("\n\n********** Problem 12 **********");
+            Product newProduct = new Product()
+            {
+                Name = "From Idea To Launch",
+                Description = "Book: About Take Your Great Ideas To Profitable Reality",
+                Price = 100
+            };
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
 
+            Console.WriteLine($"New product added {newProduct.Name}");
         }
 
         private void ProblemThirteen()

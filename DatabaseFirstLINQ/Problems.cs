@@ -26,9 +26,9 @@ namespace DatabaseFirstLINQ
             ProblemEight();
             ProblemNine();
             ProblemTen();
-            //ProblemEleven();
+            ProblemEleven();
             ProblemTwelve();
-            //ProblemThirteen();
+            ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
             //ProblemSixteen();
@@ -217,8 +217,11 @@ namespace DatabaseFirstLINQ
         private void ProblemThirteen()
         {
             // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+            var roleName = "Customer";
+            var email = "david@gmail.com";
+            var roleId = _context.Roles.Where(r => r.RoleName == roleName).Select(r => r.Id).SingleOrDefault();
+            var userId = _context.Users.Where(u => u.Email == email).Select(u => u.Id).SingleOrDefault();
+
             UserRole newUserRole = new UserRole()
             {
                 UserId = userId,
@@ -226,6 +229,9 @@ namespace DatabaseFirstLINQ
             };
             _context.UserRoles.Add(newUserRole);
             _context.SaveChanges();
+
+            Console.WriteLine("\n\n********** Problem 13 **********");
+            Console.WriteLine($"User {email} classified as a {roleName}");
         }
 
         private void ProblemFourteen()

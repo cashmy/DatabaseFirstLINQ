@@ -375,6 +375,7 @@ namespace DatabaseFirstLINQ
 
             var shoppingCart = _context.ShoppingCarts
                 .Include(sc => sc.Product)
+                .Select(sc => new {sc.UserId, sc.Product, sc.Quantity, })
                 .GroupBy(sc => sc.UserId)
                 .Select(sc => new {
                     UserIdK = sc.Key,

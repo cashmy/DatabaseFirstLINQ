@@ -418,6 +418,8 @@ namespace DatabaseFirstLINQ
             
 
 
+            Simulation.RunSimulation();
+
         }
     }
 

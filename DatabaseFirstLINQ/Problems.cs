@@ -405,16 +405,10 @@ namespace DatabaseFirstLINQ
             // View all products in the Products table
             // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
             // Remove a product from their shopping cart
-            // 3. If the user does not succesfully sing in
+            // 3. If the user does not succesfully sign in
             // a. Display "Invalid Email or Password"
             // b. Re-prompt the user for credentials
             Console.WriteLine("\n\n********** Bonus Three **********");
-            Shopping customerOne = new Shopping();
-            customerOne.GetCredentials();
-            customerOne.ViewProducts();
-            customerOne.ViewAllProducts();
-            customerOne.AddProductsToCart();
-            customerOne.RemoveProducts();
             
 
 

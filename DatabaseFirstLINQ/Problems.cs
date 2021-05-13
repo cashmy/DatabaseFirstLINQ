@@ -37,8 +37,8 @@ namespace DatabaseFirstLINQ
             //ProblemNineteen();
             //ProblemTwenty();
             //BonusOne();
-            BonusTwo();
-            //BonusThree();
+            //BonusTwo();
+            BonusThree();
 
         }
 
@@ -408,6 +408,8 @@ namespace DatabaseFirstLINQ
             // 3. If the user does not succesfully sing in
             // a. Display "Invalid Email or Password"
             // b. Re-prompt the user for credentials
+
+            Simulation.RunSimulation();
 
         }
 

@@ -7,7 +7,7 @@ namespace DatabaseFirstLINQ
     public class Simulation
     {
 
-        public void RunSimulation()
+        public static void RunSimulation()
         {
             bool Check = UserInterface.DisplayWelcome();
             if (Check)
@@ -20,7 +20,7 @@ namespace DatabaseFirstLINQ
             }
         }
 
-        public void SimulationMenu()
+        public static void SimulationMenu()
         {
             bool WillProceed = true;
             while (WillProceed)
@@ -30,22 +30,27 @@ namespace DatabaseFirstLINQ
                 if (UserOption == 1)
                 {
                     // Execute Menu Option 1
+                    UserInterface.OutputText("Menu Option 1 Chosen");
                 }
                 else if (UserOption == 2)
                 {
                     // Execute Menu Option 2
+                    UserInterface.OutputText("Menu Option 2 Chosen");
                 }
                 else if (UserOption == 3)
                 {
                     // Execute Menu Option 3
+                    UserInterface.OutputText("Menu Option 3 Chosen");
                 }
                 else if (UserOption == 4)
                 {
                     // Execute Menu Option 4
+                    UserInterface.OutputText("Menu Option 4 Chosen");
                 }
                 else if (UserOption == 5)
                 {
-                    //UserInterface.OutputText('Goodbye.')
+                    UserInterface.OutputText("Menu Option 5 Chosen");
+                    UserInterface.OutputText("Goodbye.");
                     // return - just exit
                 }
                 else

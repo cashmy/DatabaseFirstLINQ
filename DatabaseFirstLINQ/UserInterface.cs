@@ -21,12 +21,18 @@ namespace DatabaseFirstLINQ
                 Console.WriteLine("\tPress -4- to Remove a product from your cart");
                 Console.WriteLine("\tPress -5- to Exit");
 
-                int UserInput = Console.Read();
+                string UserInputStr = Console.ReadLine();
+                int UserInput = TryParseInt(UserInputStr);
 
                 ValidateUserSelectionStatus = ValidateMainMenu(UserInput);
                 if (ValidateUserSelectionStatus) 
                 {
                     ValidateUserSelectionOption = UserInput;
+                }
+                else
+                {
+                    OutputText("Not a valid selection, please try again.");
+                    UserInput = 0;
                 }
             }
 
@@ -60,7 +66,7 @@ namespace DatabaseFirstLINQ
             }
         }
 
-        public void OutputText(string text)
+        public static void OutputText(string text)
         {
             Console.WriteLine(text);
         }
@@ -84,6 +90,18 @@ namespace DatabaseFirstLINQ
                     {
                         return false;
                     }
+            }
+        }
+
+        public static int TryParseInt(string value)
+        {
+            try
+            {
+                return (int)Int32.Parse(value);
+            }
+            catch
+            {
+                return 0;
             }
         }
     }

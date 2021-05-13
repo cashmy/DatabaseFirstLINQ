@@ -37,8 +37,8 @@ namespace DatabaseFirstLINQ
             //ProblemNineteen();
             //ProblemTwenty();
             //BonusOne();
-            BonusTwo();
-            //BonusThree();
+            //BonusTwo();
+            BonusThree();
 
         }
 
@@ -408,8 +408,18 @@ namespace DatabaseFirstLINQ
             // 3. If the user does not succesfully sing in
             // a. Display "Invalid Email or Password"
             // b. Re-prompt the user for credentials
+            Console.WriteLine("\n\n********** Bonus Three **********");
+            Shopping customerOne = new Shopping();
+            customerOne.GetCredentials();
+            customerOne.ViewProducts();
+            customerOne.ViewAllProducts();
+            customerOne.AddProductsToCart();
+            customerOne.RemoveProducts();
+            
+
 
         }
-
     }
+
+    
 }

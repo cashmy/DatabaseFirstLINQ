@@ -16,16 +16,16 @@ namespace DatabaseFirstLINQ
         }
         public void RunLINQQueries()
         {
-            ProblemOne();
-            ProblemTwo();
-            ProblemThree();
-            ProblemFour();
-            ProblemFive();
-            ProblemSix();
-            ProblemSeven();
-            ProblemEight();
-            ProblemNine();
-            ProblemTen();
+            //ProblemOne();
+            //ProblemTwo();
+            //ProblemThree();
+            //ProblemFour();
+            //ProblemFive();
+            //ProblemSix();
+            //ProblemSeven();
+            //ProblemEight();
+            //ProblemNine();
+            //ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -35,7 +35,11 @@ namespace DatabaseFirstLINQ
             //ProblemSeventeen();
             //ProblemEighteen();
             //ProblemNineteen();
-            ProblemTwenty();
+            //ProblemTwenty();
+            BonusOne();
+            //BonusTwo();
+            //BonusThree();
+
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -346,6 +350,22 @@ namespace DatabaseFirstLINQ
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.WriteLine("\n\n********** Bonus One **********");
+            Console.WriteLine("Provide email: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Provide password: ");
+            string password = Console.ReadLine();
+           
+
+            var userCreds = _context.Users.Where(e => e.Email == email && e.Password == password);         
+            if (userCreds.Count() != 0)
+            {
+                Console.WriteLine("Signed In!");
+            }
+            else
+            {
+                Console.WriteLine("Try Again.");
+            }
         }
 
         private void BonusTwo()

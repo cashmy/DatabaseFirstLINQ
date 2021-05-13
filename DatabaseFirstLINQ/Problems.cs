@@ -33,9 +33,9 @@ namespace DatabaseFirstLINQ
             //ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
-            ProblemEighteen();
+            //ProblemEighteen();
             //ProblemNineteen();
-            //ProblemTwenty();
+            ProblemTwenty();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -316,19 +316,28 @@ namespace DatabaseFirstLINQ
         {
             // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
             // HINT: Loop
-            var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == "oda@gmail.com");
+            var email = "oda@gmail.com";
+            var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == email);
             foreach (ShoppingCart userProductRelationship in shoppingCartProducts)
             {
                 _context.ShoppingCarts.Remove(userProductRelationship);
             }
             _context.SaveChanges();
+            Console.WriteLine("\n\n********** Problem 19 **********");
+            Console.WriteLine($"The shopping care for {email} has been removed.");
         }
 
         private void ProblemTwenty()
         {
             // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-
+            var email = "oda@gmail.com";
+            var user = _context.Users.Where(ur => ur.Email == email).SingleOrDefault();
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            Console.WriteLine("\n\n********** Problem 20 **********");
+            Console.WriteLine($"The user with the email of '{email}' has been removed.");
         }
+    
 
         // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
 

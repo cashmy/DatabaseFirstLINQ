@@ -30,7 +30,7 @@ namespace DatabaseFirstLINQ
             //ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
-            //ProblemFifteen();
+            ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
             //ProblemEighteen();
@@ -175,10 +175,7 @@ namespace DatabaseFirstLINQ
                 {
                     Console.WriteLine($"{u.User.Email} has bought {u.Quantity} of {u.Product.Name} for ${u.Product.Price} each.");
                 }
-                
-
             }
-
         }
 
         // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
@@ -260,10 +257,13 @@ namespace DatabaseFirstLINQ
         private void ProblemFifteen()
         {
             // Update the email of the user we created to "mike@gmail.com"
-            var user = _context.Users.Where(u => u.Email == "david@gmail.com").SingleOrDefault();
+            string email = "david@gmail.com";
+            var user = _context.Users.Where(u => u.Email == email).SingleOrDefault();
             user.Email = "mike@gmail.com";
             _context.Users.Update(user);
             _context.SaveChanges();
+            Console.WriteLine("\n\n********** Problem 15 **********");
+            Console.WriteLine($"User email {email} has been updated to {user.Email}.");
         }
 
         private void ProblemSixteen()

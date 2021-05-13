@@ -388,7 +388,7 @@ namespace DatabaseFirstLINQ
             foreach (var item in shoppingCart)
             {
                 Console.WriteLine($"User ID: {item.UserIdK} has {item.Count} items for a total of ${item.Subtotal}");
-                AllCartsTotal += item.Subtotal;
+                AllCartsTotal += (decimal)item.Subtotal; 
             }
             Console.WriteLine($"\n\n Total for All Shopping Carts is ${AllCartsTotal}");
   

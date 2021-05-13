@@ -12,7 +12,7 @@ namespace DatabaseFirstLINQ
             bool Check = UserInterface.DisplayWelcome();
             if (Check)
             {
-                SimulationMenu()
+                SimulationMenu();
             }
             else
             {
@@ -25,7 +25,7 @@ namespace DatabaseFirstLINQ
             bool WillProceed = true;
             while (WillProceed)
             {
-                int UserOption = UserInterface.SimulationMainMenu()
+                int UserOption = UserInterface.SimulationMainMenu();
 
                 if (UserOption == 1)
                 {

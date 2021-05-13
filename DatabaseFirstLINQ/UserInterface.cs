@@ -24,14 +24,17 @@ namespace DatabaseFirstLINQ
                 int UserInput = Console.Read();
 
                 ValidateUserSelectionStatus = ValidateMainMenu(UserInput);
-                if (ValidateUserSelectionStatus) { ValidateUserSelectionOption = UserInput};
+                if (ValidateUserSelectionStatus) 
+                {
+                    ValidateUserSelectionOption = UserInput;
+                }
             }
 
             return ValidateUserSelectionOption;
 
         }
 
-        public bool ValidateMainMenu(int UserInput)
+        public static bool ValidateMainMenu(int UserInput)
         {
             if (UserInput > 0 && UserInput < 6)
             {
@@ -47,7 +50,7 @@ namespace DatabaseFirstLINQ
         {
             Console.Write("\nWelcome to the Shopping Cart manager. \n");
 
-            bool UserResponse = BoolPrompt("Would you like to order products today? (y/n): ")
+            bool UserResponse = BoolPrompt("Would you like to order products today? (y/n): ");
             if (UserResponse)
                 { return true; }
             else
@@ -62,7 +65,7 @@ namespace DatabaseFirstLINQ
             Console.WriteLine(text);
         }
 
-        public bool BoolPrompt(string text)
+        public static bool BoolPrompt(string text)
         {
             Console.WriteLine(text);
             string UserInput = Console.ReadLine().ToLower();

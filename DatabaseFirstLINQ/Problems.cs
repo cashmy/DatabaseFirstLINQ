@@ -31,9 +31,9 @@ namespace DatabaseFirstLINQ
             //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
-            ProblemSixteen();
+            //ProblemSixteen();
             //ProblemSeventeen();
-            //ProblemEighteen();
+            ProblemEighteen();
             //ProblemNineteen();
             //ProblemTwenty();
         }
@@ -284,15 +284,19 @@ namespace DatabaseFirstLINQ
             // Change the role of the user we created to "Employee"
             // HINT: You need to delete the existing role relationship and then create a new UserRole object and add it to the UserRoles table
             // See problem eighteen as an example of removing a role relationship
-            var userRole = _context.UserRoles.Where(ur => ur.User.Email == "mike@gmail.com").SingleOrDefault();
+            var email = "mike@gmail.com";
+            var roleName = "Employee";
+            var userRole = _context.UserRoles.Where(ur => ur.User.Email == email).SingleOrDefault();
             _context.UserRoles.Remove(userRole);
             UserRole newUserRole = new UserRole()
             {
-                UserId = _context.Users.Where(u => u.Email == "mike@gmail.com").Select(u => u.Id).SingleOrDefault(),
-                RoleId = _context.Roles.Where(r => r.RoleName == "Employee").Select(r => r.Id).SingleOrDefault()
+                UserId = _context.Users.Where(u => u.Email == email).Select(u => u.Id).SingleOrDefault(),
+                RoleId = _context.Roles.Where(r => r.RoleName == roleName).Select(r => r.Id).SingleOrDefault()
             };
             _context.UserRoles.Add(newUserRole);
             _context.SaveChanges();
+            Console.WriteLine("\n\n********** Problem 17 **********");
+            Console.WriteLine($"{email} role has been changed to {roleName}.");
         }
 
         // <><> D Actions (Delete) <><>
@@ -300,7 +304,12 @@ namespace DatabaseFirstLINQ
         private void ProblemEighteen()
         {
             // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
-
+            var email = "oda@gmail.com";
+            var userRole = _context.UserRoles.Where(ur => ur.User.Email == email).SingleOrDefault();
+            _context.UserRoles.Remove(userRole);
+            _context.SaveChanges();
+            Console.WriteLine("\n\n********** Problem 18 **********");
+            Console.WriteLine($"{email} role has been removed.");
         }
 
         private void ProblemNineteen()

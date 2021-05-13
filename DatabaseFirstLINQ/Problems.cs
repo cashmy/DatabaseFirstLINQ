@@ -30,8 +30,8 @@ namespace DatabaseFirstLINQ
             //ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
-            ProblemFifteen();
-            //ProblemSixteen();
+            //ProblemFifteen();
+            ProblemSixteen();
             //ProblemSeventeen();
             //ProblemEighteen();
             //ProblemNineteen();
@@ -269,6 +269,13 @@ namespace DatabaseFirstLINQ
         private void ProblemSixteen()
         {
             // Update the price of the product you created to something different using LINQ.
+
+            var product = _context.Products.Where(p => p.Name == "From Idea To Launch").SingleOrDefault();
+            product.Price = 50;
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            Console.WriteLine("\n\n********** Problem 16 **********");
+            Console.WriteLine($"Product {product.Name}'s price has been changed to {product.Price}.");
 
         }
 

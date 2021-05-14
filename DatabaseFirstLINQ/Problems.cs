@@ -408,6 +408,7 @@ namespace DatabaseFirstLINQ
             // 3. If the user does not succesfully sign in
             // a. Display "Invalid Email or Password"
             // b. Re-prompt the user for credentials
+
             Console.WriteLine("\n\n********** Bonus Three **********");
             
 

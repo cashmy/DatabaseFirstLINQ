@@ -22,9 +22,9 @@ namespace DatabaseFirstLINQ
             {
 
 
-                Console.WriteLine("Provide email: ");
+                Console.WriteLine("\nProvide email: ");
                 string email = Console.ReadLine();
-                Console.WriteLine("Provide password: ");
+                Console.WriteLine("\nProvide password: ");
                 string password = Console.ReadLine();
                 var userCreds = _context.Users.Where(e => e.Email == email && e.Password == password).SingleOrDefault();
 
@@ -33,12 +33,12 @@ namespace DatabaseFirstLINQ
                 this.password = password;
                 if (userCreds != null)
                 {
-                    Console.WriteLine("Signed In!");
+                    Console.WriteLine("\n*** Signed In! ***");
                     count = 3;
                 }
                 else
                 {
-                    Console.WriteLine("Log In Failed. Try Again.");
+                    Console.WriteLine("\nLog In Failed. Try Again.");
                     count++;
                     if (count == 1)
                     {
@@ -58,12 +58,12 @@ namespace DatabaseFirstLINQ
         public void ViewShoppingCart()
         {
             //var userId = _context.Users.Where(u => u.Email == email).Select(u => u.Id));
-            var shoppingCart = _context.ShoppingCarts.Include(u => u.User).Include(p => p.Product).Where(u => u.User.Email == email).Select(p => new { p.UserId, p.Product } ).ToList();
+            var shoppingCart = _context.ShoppingCarts.Include(u => u.User).Include(p => p.Product).Where(u => u.User.Email == email).Select(p => new { p.UserId, p.Product, p.Quantity } ).ToList();
 
             Console.WriteLine("\n***User Shopping Cart***");
             foreach (var p in shoppingCart)
             {
-                Console.WriteLine($"{p.Product.Name} is in your cart");
+                Console.WriteLine($"{p.Product.Name} with a quantity of -{p.Quantity}- is in your cart");
             }
         }
 
@@ -77,7 +77,7 @@ namespace DatabaseFirstLINQ
             {
                 
                 choice++;
-                Console.Write($"\n Product# {choice} - {p.Name} {p.Description} ${p.Price}\n");
+                Console.Write($"\n Product# {choice} - {p.Name}\t${p.Price}\n\t{p.Description}\n");
             }
         }
 
@@ -90,15 +90,27 @@ namespace DatabaseFirstLINQ
             var productId = _context.Products.Where(p => p.Id == selection).Select(p => p.Id).SingleOrDefault();
             var selectedItem = _context.Products.Where(p => p.Id == selection);
 
-            
-            ShoppingCart newProduct = new ShoppingCart()
+            // Check for existing data
+            var productData = _context.ShoppingCarts.Where(p => p.UserId == userId && p.ProductId == productId).SingleOrDefault();
+
+            if (productData != null)
             {
-                UserId = userId,
-                ProductId = productId,
-                Quantity = 1
-            };
-            _context.ShoppingCarts.Add(newProduct);
-            _context.SaveChanges();
+                productData.Quantity = productData.Quantity + 1;
+                _context.ShoppingCarts.Update(productData);
+                _context.SaveChanges();
+            }
+            else
+            {
+                ShoppingCart newProduct = new ShoppingCart()
+                {
+                    UserId = userId,
+                    ProductId = productId,
+                    Quantity = 1
+                };
+                _context.ShoppingCarts.Add(newProduct);
+                _context.SaveChanges();
+            }
+
 
             foreach (var item in selectedItem)
             {
@@ -115,14 +127,21 @@ namespace DatabaseFirstLINQ
                 .Where(p => p.ProductId == selection && p.User.Email == email)
                 .SingleOrDefault();
 
-            _context.ShoppingCarts.Remove(product);
-            _context.SaveChanges();
+            if (product.Quantity > 1)
+            {
+                product.Quantity = product.Quantity - 1;
+                _context.ShoppingCarts.Update(product);
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.ShoppingCarts.Remove(product);
+                _context.SaveChanges();
+            }
 
             Console.WriteLine($"***{product.Product.Name} has been removed from your cart.");
 
         }
-
-
 
     }
 }
